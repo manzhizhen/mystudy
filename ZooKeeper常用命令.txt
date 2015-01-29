@@ -1,0 +1,30 @@
+
+
+./zkServer.sh start ../../../data/zoo1/zoo.cfg
+./zkServer.sh start ../../../data/zoo2/zoo.cfg
+./zkServer.sh start ../../../data/zoo3/zoo.cfg
+
+{PATH_TO_ZK}/bin/zkCli.sh -server 127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183
+ls /
+create -e /master "master1.example.com:2223"
+get /master
+stat /master true
+create /workers ""
+create /tasks ""
+create /assign ""
+get /workers
+get /tasks
+get /assign
+ls /workers true
+ls /tasks true
+create -e /workers/worker1.example.com "worker1.example.com:2224"
+create /assign/worker1.example.com ""
+ls /assign/worker1.example.com true
+create -s /tasks/task- "cmd"
+ls /tasks/task-0000000000 true
+ls /tasks
+ls /workers
+create /assign/worker1.example.com/task-0000000000 ""
+ls /assign/worker1.example.com
+create /tasks/task-0000000000/status "done"
+get /tasks/task-0000000000

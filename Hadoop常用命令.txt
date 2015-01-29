@@ -1,0 +1,46 @@
+Hadoop常用命令：
+
+rpm -qa | grep ssh 
+service sshd start
+ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+ssh localhost
+
+export HADOOP_ROOT_LOGGER=DEBUG,console
+hadoop fs -text /home/manzhizhen/soft/hadoop-2.6.0/sss.log
+
+mkdir build
+cd build
+ ../configure --prefix=/usr
+make -j4
+make install
+ls -l /lib64/libc.so.6
+
+export HADOOP_CLASSPATH=hadoop-examples.jar
+hadoop MaxTemperature /home/manzhizhen/soft/logs/sample.txt output
+
+hdfs fsck / -files -blocks (old:hadoop fsck / -files -blocks)
+
+hadoop fs  -mkdir /pics
+hadoop fs -copyFromLocal /home/manzhizhen/pics/car.jpg /pics/car.jpg
+hadoop fs -ls -R /
+hadoop fs -ls /pics
+--列出本地文件系统根目录
+hadoop fs -ls file:///
+hadoop fs -ls file:///home/manzhizhen/
+hadoop fs -rm /pics/car.jpg
+
+jps
+
+--相同版本hadoop集群之间传输数据
+hadoop distcp hdfs://namenode1/foo hadfs://namenode2/bar
+hadoop distcp -update hdfs://namenode1/foo hadfs://namenode2/bar/foo
+
+--使用HTTP协议在不同版本hadoop之间拷贝数据
+hadoop distcp webhdfs://namenode1:50070/foo webhdfs://namenode2:50070/bar（old:hadoop distcp hftp://namenode1/foo hdfs://namenode2/bar）
+
+http://jobtracker-host:50030/
+http://localhost:8088/cluster							-- Hadoop资源管理页面
+http://localhost:50070/dfshealth.html#tab-overview  -- NameNode节点信息
+
+
