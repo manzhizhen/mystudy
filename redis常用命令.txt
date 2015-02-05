@@ -1,0 +1,138 @@
+
+redis-server redis.conf
+redis-server --port 6380
+
+redis-cli shutdown
+
+redis-cli -h 127.0.0.1 -p 6379
+redis-cli ping
+
+redis-cli incr foo
+redis-cli get foo
+redis-cli key *
+redis-cli key ?
+redis-cli key [abc]
+
+redis-cli config set loglevel warning
+redis-cli config get loglevel
+
+redis-cli select 0
+redis-cli select 1
+redis-cli select 15
+
+redis-cli set bar 1
+redis-cli del bar
+redis-cli keys "bar*" | xargs redis-cli del
+redis-cli del 'redis-cli keys "bar*"'
+redis-cli exists foo
+
+redis-cli type foo
+redis-cli incr bar
+redis-cli incrby bar 2
+redis-cli incrbyfloat bar 2.7
+redis-cli decr bar
+redis-cli decrby bar 2
+
+redis-cli append foo abc
+redis-cli append foo "  abc"
+
+redis-cli mset bar1 1 bar2 2 bar3 3
+redis-cli mget bar1 bar2 bar3
+
+redis-cli hset car1 price 500
+redis-cli hset car1 name BMW
+redis-cli hset car2 price 5000
+redis-cli hset car2 name AUTO
+redis-cli hget car1 name
+redis-cli hget car1 price
+
+redis-cli hmset car3 name FLL car3 price 199999
+redis-cli hmset car3 price name
+
+redis-cli hgetall car3
+
+redis-cli hsetnx car3 price1 243234
+
+redis-cli hexists car3 price
+redis-cli hexists car3 price1
+
+redis-cli hdel car3 price
+
+redis-cli hkeys car3
+redis-cli hvals car3
+
+
+redis-cli lpush man1 l1 l2 l3
+redis-cli rpush man1 r1 r2 r3
+redis-cli lpop man1
+redis-cli rpop man1
+redis-cli llen man1
+redis-cli lrange man1 0 2
+redis-cli lrem man1 -1 l2
+redis-cli lrem man1 1 r2
+
+redis-cli lindex man1 1
+redis-cli lset man1 1 ll2
+redis-cli ltrim man1 0 2
+
+-- 集合
+redis-cli sadd coll1 c1 c2 c3 c4
+redis-cli sadd coll1 c1 c2 c3 c4 c5
+redis-cli srem coll1 c5
+redis-cli smembers coll1
+redis-cli sismember coll1 c1
+redis-cli sismember coll1 c6
+redis-cli sadd coll2 c1 c2
+redis-cli sdiff coll1 coll2
+redis-cli sdiff coll2 coll1
+redis-cli sadd coll3 c3
+redis-cli sdiff coll1 coll2 coll3
+redis-cli sinter coll1 coll2
+redis-cli sinter coll1 coll2 coll3
+redis-cli sunion coll1 coll2
+redis-cli sunion coll1 coll2 coll3
+redis-cli scard coll1
+redis-cli sdiffstore result1 coll1 coll2
+redis-cli smembers result1
+redis-cli sinterstore result2 coll1 coll2
+redis-cli smembers result2
+redis-cli sunionstore result3 coll1 coll2
+redis-cli smembers result3
+redis-cli srandmember coll1
+redis-cli srandmember coll1 2
+redis-cli srandmember coll1 -2
+redis-cli srandmember coll1 10
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
