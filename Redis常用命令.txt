@@ -39,6 +39,7 @@ redis-cli append foo "  abc"
 redis-cli mset bar1 1 bar2 2 bar3 3
 redis-cli mget bar1 bar2 bar3
 
+-- 散列类型
 redis-cli hset car1 price 500
 redis-cli hset car1 name BMW
 redis-cli hset car2 price 5000
@@ -61,7 +62,7 @@ redis-cli hdel car3 price
 redis-cli hkeys car3
 redis-cli hvals car3
 
-
+-- 列表类型
 redis-cli lpush man1 l1 l2 l3
 redis-cli rpush man1 r1 r2 r3
 redis-cli lpop man1
