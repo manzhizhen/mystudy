@@ -1,0 +1,16 @@
+
+show databases;
+
+use test;
+
+show variables;
+
+show variables like '%commit%';
+
+set autocommit = 1;
+
+set session transaction isolation level read committed;
+
+show tables;
+
+show table status like 'user';
